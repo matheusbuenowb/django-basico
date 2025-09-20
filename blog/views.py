@@ -3,8 +3,17 @@ from django.shortcuts import render
 
 def blog(request): ##view
     print("blog")
+
+    context = {
+        'text': 'Olá blog',
+        'title': 'Página de Blog - '
+    }
+
+    
     return render(
-        request, 'blog/index.html'
+        request,
+        'blog/index.html',
+        context
     )
 
 def exemplo(request):
