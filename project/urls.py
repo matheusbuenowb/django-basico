@@ -5,6 +5,8 @@ from django.urls import path, include
 
 #Model, view, controller
 
+app_name = 'home' #namespace para urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')), #feito aninhamento blog
