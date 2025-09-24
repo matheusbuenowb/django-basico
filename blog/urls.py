@@ -5,7 +5,7 @@ from . import views
 
 #blog/  -> já está incluido aqui
 
-app_name = 'blog'
+app_name = 'blog' #namespace para urls
 
 urlpatterns = [
     #path('', home_views.home)
