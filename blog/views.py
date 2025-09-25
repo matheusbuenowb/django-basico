@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, Http404
 from django.shortcuts import render
 from blog.data import posts #importamos os dados posts ficticios
 from typing import Any
@@ -28,7 +28,7 @@ def post(request: HttpRequest, post_id: int): ##view para casos com id, e força
             break #ajuda a nao continuar o loop desnecessariamente
 
     if found_post is None:
-        raise Exception('Post não encontrado')
+        raise Http404('Post não encontrado') #agora sim, se n achar o post, retorna 404
 
     print("post: ", id)
 
