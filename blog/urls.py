@@ -11,7 +11,7 @@ urlpatterns = [
     #path('', home_views.home)
     path('', views.blog, name = 'blog'), #outra forma mais generica de importar, é bom para padronizar imports entre apps
     path('exemplo/', views.exemplo, name ='exemplo'),
-    path('post/<int:id>', views.post, name ='post') #mudei de blog para post: assim envia conflitos
+    path('post/<int:post_id>/', views.post, name ='post') #mudei de blog para post: assim envia conflitos
     #e conserta o erro de views com 2 parametros [request, id]
     #int é para converter o id em inteiro e nao permitir strings
 ]

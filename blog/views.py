@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from blog.data import posts #importamos os dados posts ficticios
+from typing import Any
 
 def blog(request): ##view
     print("blog")
@@ -17,19 +18,31 @@ def blog(request): ##view
         context
     )
 
-def post(request, id): ##view para casos com id
+def post(request: HttpRequest, post_id: int): ##view para casos com id, e força tipagem do tipo inteiro
+
+    found_post: dict[str, Any] | None = None #inicialmente nulo ou post encontrado tipado do tipo dicionario
+
+    for post in posts:
+        if post['id'] == post_id:
+            found_post = post
+            break #ajuda a nao continuar o loop desnecessariamente
+
+    if found_post is None:
+        raise Exception('Post não encontrado')
+
     print("post: ", id)
 
     context = {
         'id': id,
-        'text': 'Olá blog',
-        'posts': posts
+        'text': 'Olá blog', 
+        'post': found_post, #dai aqui ele pega o post relacionado ao id
+        'title':found_post['title']
     }
 
     
     return render(
         request,
-        'blog/index.html',
+        'blog/post.html',
         context
     )
 
