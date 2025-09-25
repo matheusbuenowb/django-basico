@@ -23,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v_guv_a&tgj=iy#4pal@l^g$ywwbxak%89yx@rh5c6v)jy*n*d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #deixamos false quando for pra producao e subir para algum servidor
+#erros especificos nao sao mostrados quando false, apenas um erro generico 500
 
 ALLOWED_HOSTS = []
 
@@ -123,6 +124,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'base' / 'static',
 
 ]
+
+#pip install whitenoise -> feito para servir arquivos estaticos em producao
+#https://whitenoise.evans.io/en/stable/
+
+STATIC_ROOT = BASE_DIR / 'static_files'  #pasta onde vai ser coletado os arquivos estaticos quando for pra producao
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
